@@ -1,5 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="32" height="32">
-  <path d="M10 50 C 10 80, 90 80, 90 50" fill="none" stroke="#1d3557" stroke-width="8" stroke-linecap="round"/>
+  <!-- Dark Bowl -->
+  <path d="M10 50 C 10 85, 90 85, 90 50 Z" fill="#1d3557"/>
+  <!-- Red Sauce -->
+  <path d="M15 50 C 15 75, 85 75, 85 50 Z" fill="#e63946"/>
+  <!-- Pasta -->
   <path d="M25 50 Q 35 30, 45 50 T 65 50" fill="none" stroke="#ffc629" stroke-width="7" stroke-linecap="round"/>
   <path d="M35 45 Q 45 25, 55 45 T 75 45" fill="none" stroke="#ffc629" stroke-width="7" stroke-linecap="round"/>
 </svg>
