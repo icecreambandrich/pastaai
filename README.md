@@ -1,4 +1,4 @@
-# Nonna Knows Pasta
+# Nonna Vision AI
 
 Ciao bella! This is a simple web application that uses a custom-trained Teachable Machine model to identify different types of pasta from an image.
 
