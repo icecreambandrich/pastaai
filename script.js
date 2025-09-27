@@ -161,7 +161,7 @@ async function init() {
     maxPredictions = model.getTotalClasses();
 
     labelContainer = document.getElementById('label-container');
-    labelContainer.innerHTML = 'Model loaded. Ready to identify pasta!';
+    labelContainer.innerHTML = 'Pasta radar online. Let’s see what you’ve got.';
 
     webcamButton.addEventListener('click', setupWebcam);
     uploadButton.addEventListener('click', () => fileUpload.click());
@@ -268,7 +268,7 @@ async function reset() {
     webcamContainer.style.display = 'block';
     webcamContainer.innerHTML = '';
     imageContainer.style.display = 'none';
-    labelContainer.innerHTML = 'Model loaded. Ready to identify pasta!';
+    labelContainer.innerHTML = 'Pasta radar online. Let’s see what you’ve got.';
     document.getElementById('details-container').style.display = 'none';
     isScanning = false;
     stablePredictionCounter = 0;
