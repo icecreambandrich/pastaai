@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+
+# Thumbs.db
+Thumbs.db
+
+# Log files
+*.log
+
+# Environment variables
+.env*

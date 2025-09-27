@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasta AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <h1>Pasta AI</h1>
+        <p>Ciao bella! Show me your pasta and I'll name it</p>
+
+        <div id="container">
+        <div id="webcam-container"></div>
+        <div id="image-container">
+            <img id="uploaded-image" src="#" alt="Uploaded Image"/>
+        </div>
+        <div id="label-container"></div>
+        <div id="details-container" style="display: none;">
+            <p id="pasta-pronunciation"></p>
+            <h3>History</h3>
+            <p id="pasta-history"></p>
+            <h3>Typical Pairing</h3>
+            <p id="pasta-pairing"></p>
+            <h3>Meaning</h3>
+            <p id="pasta-meaning"></p>
+            <h3>Region</h3>
+            <p id="pasta-region"></p>
+        </div>
+    </div>
+</main>
+
+    <div id="button-container">
+        <button id="webcam-button">Use Camera</button>
+        <button id="upload-button">Upload Photo</button>
+        <button id="reset-button" style="display: none;">Scan Again</button>
+        <input type="file" id="file-upload" accept="image/*" style="display: none;">
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

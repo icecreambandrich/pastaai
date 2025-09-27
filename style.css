@@ -1,0 +1,175 @@
+:root {
+    --primary-color: #ffc629; /* A nice pasta yellow */
+    --secondary-color: #e63946; /* A tomato red */
+    --background-color: #f1faee;
+    --text-color: #1d3557;
+    --light-gray: #f0f0f0;
+    --white: #ffffff;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 20px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    margin-top: 20px;
+    font-size: 3em;
+    font-weight: 600;
+    color: var(--secondary-color);
+    margin-bottom: 0;
+}
+
+#container {
+    width: 100%;
+    max-width: 450px;
+    margin: 20px 0;
+    background: var(--white);
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+}
+
+#webcam-container,
+#image-container {
+    position: relative;
+    width: 100%;
+    padding-top: 100%; /* 1:1 Aspect Ratio */
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: var(--light-gray);
+    transition: all 0.3s ease;
+}
+
+#webcam-container canvas,
+#uploaded-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#image-container {
+    display: none; /* Hidden by default */
+}
+
+#label-container {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 12px;
+    background-color: var(--light-gray);
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 600;
+    min-height: 30px;
+    transition: all 0.3s ease;
+    color: var(--secondary-color);
+}
+
+main > p {
+    margin-top: 20px;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+#button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start; /* Align buttons to the top of the container */
+    gap: 15px;
+    flex-grow: 1; /* Allow this container to take up remaining space */
+    width: 100%;
+    max-width: 450px; /* Match the container width */
+    margin-top: 20px; /* Add some space from the box above */
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 1em;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+#upload-button {
+    background-color: var(--secondary-color);
+    color: var(--white);
+}
+
+#reset-button {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+
+#details-container {
+    text-align: left;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--light-gray);
+}
+
+#details-container h3 {
+    margin-bottom: 5px;
+    color: var(--text-color);
+}
+
+#details-container p {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+#pasta-pronunciation {
+    text-align: center;
+    font-size: 1.1em;
+    margin-bottom: 20px !important;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 15px;
+    }
+
+    #container {
+        padding: 15px;
+    }
+
+    #button-container {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+    }
+}
