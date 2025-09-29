@@ -142,10 +142,12 @@ let lastPrediction = '';
 let stablePredictionCounter = 0;
 const requiredStableFrames = 10; // Number of consecutive frames to be sure
 const confidenceThreshold = 0.90;
+let currentFacingMode = 'environment'; // 'user' for front camera, 'environment' for back camera
 
 const webcamButton = document.getElementById('webcam-button');
 const uploadButton = document.getElementById('upload-button');
 const resetButton = document.getElementById('reset-button');
+const flipCameraButton = document.getElementById('flip-camera-button');
 const fileUpload = document.getElementById('file-upload');
 const imageContainer = document.getElementById('image-container');
 const uploadedImage = document.getElementById('uploaded-image');
@@ -155,37 +157,61 @@ const webcamContainer = document.getElementById('webcam-container');
 async function init() {
     const modelURL = URL + 'model.json';
     const metadataURL = URL + 'metadata.json';
-
     // load the model and metadata
     model = await tmImage.load(modelURL, metadataURL);
     maxPredictions = model.getTotalClasses();
 
     labelContainer = document.getElementById('label-container');
-    labelContainer.innerHTML = 'Pasta radar online. Let’s see what you’ve got!';
+    labelContainer.innerHTML = 'Pasta radar online. Let\'s see what you\'ve got!';
 
     webcamButton.addEventListener('click', setupWebcam);
     uploadButton.addEventListener('click', () => fileUpload.click());
     resetButton.addEventListener('click', reset);
+    flipCameraButton.addEventListener('click', flipCamera);
     fileUpload.addEventListener('change', handleFileUpload);
 }
 
 async function setupWebcam() {
     isScanning = true;
-    webcam = new tmImage.Webcam(400, 400, true); // width, height, flip
-    await webcam.setup(); // request access to the webcam
-    await webcam.play();
-    window.requestAnimationFrame(loop);
+    
+    // Create webcam with specific facing mode
+    const flip = currentFacingMode === 'user'; // Flip for front camera
+    webcam = new tmImage.Webcam(400, 400, flip, currentFacingMode);
+    
+    try {
+        await webcam.setup({ facingMode: currentFacingMode });
+        await webcam.play();
+        window.requestAnimationFrame(loop);
 
-    webcamContainer.innerHTML = '';
-    webcamContainer.appendChild(webcam.canvas);
-    imageContainer.style.display = 'none';
-    webcamContainer.style.display = 'block';
-    labelContainer.innerHTML = 'Point the camera at some pasta!';
-    document.getElementById('details-container').style.display = 'none';
+        webcamContainer.innerHTML = '';
+        webcamContainer.appendChild(webcam.canvas);
+        webcamContainer.appendChild(flipCameraButton); // Re-add the flip button
+        imageContainer.style.display = 'none';
+        webcamContainer.style.display = 'block';
+        labelContainer.innerHTML = 'Point the camera at some pasta!';
+        document.getElementById('details-container').style.display = 'none';
 
-    webcamButton.style.display = 'none';
-    uploadButton.style.display = 'none';
-    resetButton.style.display = 'inline-block';
+        webcamButton.style.display = 'none';
+        uploadButton.style.display = 'none';
+        resetButton.style.display = 'inline-block';
+        flipCameraButton.style.display = 'block';
+    } catch (error) {
+        console.error('Error setting up webcam:', error);
+        labelContainer.innerHTML = 'Camera access denied or not available';
+    }
+}
+
+async function flipCamera() {
+    if (!webcam) return;
+    
+    // Stop current webcam
+    await webcam.stop();
+    
+    // Switch facing mode
+    currentFacingMode = currentFacingMode === 'user' ? 'environment' : 'user';
+    
+    // Restart webcam with new facing mode
+    await setupWebcam();
 }
 
 async function loop() {
@@ -265,15 +291,15 @@ async function reset() {
     webcamButton.style.display = 'inline-block';
     uploadButton.style.display = 'inline-block';
     resetButton.style.display = 'none';
+    flipCameraButton.style.display = 'none';
     webcamContainer.style.display = 'block';
     webcamContainer.innerHTML = '';
     imageContainer.style.display = 'none';
-    labelContainer.innerHTML = 'Pasta radar online. Let’s see what you’ve got!';
+    labelContainer.innerHTML = 'Pasta radar online. Let\'s see what you\'ve got!';
     document.getElementById('details-container').style.display = 'none';
     isScanning = false;
     stablePredictionCounter = 0;
     lastPrediction = '';
 }
-
 // Initialize the application
 init();
