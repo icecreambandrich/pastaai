@@ -88,6 +88,11 @@ main > p {
     margin-top: 7px;
     font-size: 1em;
     font-weight: 600;
+    text-align: center;
+    word-wrap: break-word;
+    white-space: normal;
+    max-width: 100%;
+    padding: 0 10px;
 }
 
 #button-container {
@@ -206,5 +211,11 @@ button:hover {
 
     button {
         width: 100%;
+    }
+
+    main > p {
+        font-size: 0.9em;
+        line-height: 1.4;
+        padding: 0 5px;
     }
 }

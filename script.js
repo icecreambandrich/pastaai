@@ -140,8 +140,8 @@ let model, webcam, labelContainer, maxPredictions;
 let isScanning = false;
 let lastPrediction = '';
 let stablePredictionCounter = 0;
-const requiredStableFrames = 10; // Number of consecutive frames to be sure
-const confidenceThreshold = 0.90;
+const requiredStableFrames = 20; // Number of consecutive frames to be sure (increased for accuracy)
+const confidenceThreshold = 0.95; // Higher confidence threshold to reduce false positives
 let currentFacingMode = 'environment'; // 'user' for front camera, 'environment' for back camera
 
 const webcamButton = document.getElementById('webcam-button');
